@@ -1,0 +1,11 @@
+{
+    "name": "nightclub",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently \"npm run dev --prefix nightclub\" \"npm start --prefix api\""
+    },   
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
