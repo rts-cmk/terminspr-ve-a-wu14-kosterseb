@@ -43,16 +43,13 @@ export default function Welcome() {
               className="size-full object-cover"
             />
 
-            {/* Stage 1 — the black box. */}
             <div className="absolute inset-0 bg-bg/0 transition-colors duration-500 group-hover:bg-bg/85 group-focus-within:bg-bg/85" />
 
-            {/* Stage 2 — borders fly in from top and bottom. */}
             <div className="pointer-events-none absolute inset-6">
               <span className={`absolute inset-x-0 top-0 h-px -translate-y-10 bg-pink ${STAGE_2}`} />
               <span className={`absolute inset-x-0 bottom-0 h-px translate-y-10 bg-pink ${STAGE_2}`} />
             </div>
 
-            {/* Stage 3 — the text. */}
             <div className={`absolute inset-0 flex flex-col items-center justify-center gap-3 px-10 text-center ${STAGE_3}`}>
               <h3 className="text-lg font-medium tracking-widest">
                 {offer.title}
