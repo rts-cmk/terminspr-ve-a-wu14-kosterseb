@@ -5,19 +5,8 @@ import Section from "@/app/ui/section";
 import SectionHeading from "@/app/ui/section-heading";
 import { apiGet, type GalleryPhoto } from "@/app/lib/api";
 
-/** The design shows a small selection, not the whole gallery. */
 const SHOWN = 7;
 
-/*
-  The design lays the seven tiles out edge to edge in four columns over two
-  rows, with the third tile twice as tall (it is the only source image that is
-  970x674 rather than 970x560). Grid auto-placement produces exactly that from
-  natural order, so the tiles stay in the order the API returns them:
-
-    col1   col2   col3    col4
-    1      2      3       4
-    5      6      (tall)  7
-*/
 const TALL_TILE = 2;
 
 export default async function Gallery() {

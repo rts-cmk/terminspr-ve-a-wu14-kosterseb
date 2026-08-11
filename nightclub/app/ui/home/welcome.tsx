@@ -20,12 +20,6 @@ const OFFERS = [
   },
 ];
 
-/*
-  The 1.5s reveal from the demo, split into three half-second stages driven only
-  by transition delays: the black box covers the photo, the borders fly in from
-  top and bottom, then the text fades up. Each card is focusable so the same
-  reveal fires on keyboard focus and on touch.
-*/
 const STAGE_2 = "opacity-0 transition duration-500 delay-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100";
 const STAGE_3 = "opacity-0 transition-opacity duration-500 delay-1000 group-hover:opacity-100 group-focus-within:opacity-100";
 

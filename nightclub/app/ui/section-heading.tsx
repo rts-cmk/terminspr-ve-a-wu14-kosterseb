@@ -1,12 +1,10 @@
 import Image from "next/image";
 
-/** A section title with the design's divider graphic underneath it. */
 export default function SectionHeading({
   title,
   className = "mb-12",
 }: {
   title: string;
-  /** Replaces the default bottom margin, so a page header can drop it. */
   className?: string;
 }) {
   return (

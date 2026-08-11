@@ -72,7 +72,7 @@ export default async function Events() {
       <Section id="events" background="/bg/slider_bg_overlay.png">
         <SectionHeading title="Events of the Month" />
         <Message className="mx-auto max-w-xl text-center">
-          No events are announced yet — check back soon.
+          No events are announced yet check back soon.
         </Message>
       </Section>
     );

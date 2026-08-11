@@ -2,19 +2,10 @@ import Image from "next/image";
 
 const BACKGROUNDS = ["/bg/header_bg_1.jpg", "/bg/header_bg_2.jpg"];
 
-/**
- * Picked outside the component body: render must stay pure, and this needs to
- * produce a new value per request rather than per re-render.
- */
 async function pickBackground() {
   return BACKGROUNDS[Math.floor(Math.random() * BACKGROUNDS.length)];
 }
 
-/**
- * Full-screen hero. One of the two backgrounds is chosen at random on every
- * page load (the page is dynamic, so this re-runs per request). The logo folds
- * in first, then the tagline drops in underneath it.
- */
 export default async function Hero() {
   const background = await pickBackground();
 

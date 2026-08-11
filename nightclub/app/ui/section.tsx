@@ -2,12 +2,6 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import Container from "@/app/ui/container";
 
-/**
- * A full-width band of the page with the shared vertical rhythm.
- * `background` fills the band with one of the images in /public/bg, dimmed so
- * text stays readable. `isolate` keeps the image's negative z-index inside this
- * section instead of slipping behind the page background.
- */
 export default function Section({
   id,
   background,
