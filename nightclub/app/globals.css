@@ -9,9 +9,33 @@
 
   --font-sans: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
 
-  --spacing-gutter: 1.25rem; 
-  --spacing-section: 5rem; 
+  --spacing-gutter: 1.25rem;
+  --spacing-section: 5rem;
+
+  --animate-fold-in: fold-in 0.9s ease-out both;
+  --animate-drop-in: drop-in 0.6s ease-out 0.9s both;
 }
+
+@keyframes fold-in {
+  from {
+    opacity: 0;
+    transform: perspective(800px) rotateX(-90deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 
 @layer base {
   body {
