@@ -1,7 +1,22 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+
+  turbopack: {
+    root: path.join(import.meta.dirname, "."),
+  },
+  images: {
+
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "4000",
+        pathname: "/file-bucket/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
