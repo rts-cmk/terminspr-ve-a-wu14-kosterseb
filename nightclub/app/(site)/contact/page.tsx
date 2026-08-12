@@ -34,7 +34,7 @@ export default function ContactPage() {
             minLength={10}
             rows={6}
           />
-          <Button type="submit" className="self-start">
+          <Button type="submit" className="self-end">
             Send
           </Button>
         </PendingForm>

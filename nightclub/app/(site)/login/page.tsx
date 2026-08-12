@@ -34,7 +34,7 @@ export default function LoginPage() {
               minLength={6}
               autoComplete="current-password"
             />
-            <Button type="submit">
+            <Button type="submit" className="self-end">
               Log In
             </Button>
           </PendingForm>

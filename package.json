@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "concurrently \"npm run dev --prefix nightclub\" \"npm start --prefix api\""
+        "dev": "concurrently -n app,api -c cyan,magenta \"cd nightclub && npm run dev\" \"cd api && npm start\""
     },   
     "devDependencies": {
         "concurrently": "^8.2.2"
