@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ButtonLink } from "@/app/ui/button";
 import CommentForm from "@/app/ui/blog/comment-form";
 import CommentList from "@/app/ui/blog/comment-list";
 import PostMeta from "@/app/ui/blog/post-meta";
-import Message from "@/app/ui/message";
 import PageHeader from "@/app/ui/page-header";
 import Section from "@/app/ui/section";
 import { getBlogPost, type BlogPostWithComments } from "@/app/lib/api";
@@ -31,8 +30,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[id]">) {
 
   try {
     post = await getBlogPost(id);
-  } catch {
-  }
+  } catch {}
 
   if (!post) notFound();
 
@@ -98,13 +96,15 @@ export default async function BlogPostPage(props: PageProps<"/blog/[id]">) {
                 <CommentForm blogpostId={post.id} />
               </>
             ) : (
-              <Message tone="info" title="Night Club is members only">
-                You need to be a registered member to comment on our blog.{" "}
-                <Link href="/login" className="text-pink hover:underline">
-                  Log in
-                </Link>{" "}
-                to join the conversation.
-              </Message>
+              <div className="flex flex-col items-center gap-5 px-6 py-12 text-center">
+                <h3 className="text-lg font-medium tracking-widest">
+                  Night<span className="text-pink">club</span> is members only
+                </h3>
+                <p className="max-w-md text-sm text-ink/70">
+                  You need to be a registered member to comment our blog.
+                </p>
+                <ButtonLink href="/login">Log in</ButtonLink>
+              </div>
             )}
           </div>
         </section>

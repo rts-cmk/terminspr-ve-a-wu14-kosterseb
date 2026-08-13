@@ -135,7 +135,6 @@ export async function logIn(
       email: auth.user.email,
     });
   } catch (error) {
-
     return failed(error, formData, "Email or password is incorrect.");
   }
 
