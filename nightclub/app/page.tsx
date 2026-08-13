@@ -6,6 +6,7 @@ import Events from "@/app/ui/home/events";
 import Gallery from "@/app/ui/home/gallery";
 import Video from "@/app/ui/home/video";
 import Testimonials from "@/app/ui/home/testimonials";
+import RecentBlog from "@/app/ui/home/recent-blog";
 import Newsletter from "@/app/ui/home/newsletter";
 
 // The hero picks its background at random
@@ -27,6 +28,8 @@ export default async function HomePage() {
         <Video />
 
         <Testimonials />
+
+        <RecentBlog />
 
         <Newsletter />
       </main>

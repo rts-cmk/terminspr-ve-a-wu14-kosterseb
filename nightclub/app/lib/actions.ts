@@ -1,26 +1,23 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { ApiError, apiPost } from "@/app/lib/api";
+import { ApiError, apiDelete, apiPost } from "@/app/lib/api";
 import {
+  commentSchema,
   contactSchema,
   loginSchema,
   newsletterSchema,
   registerSchema,
 } from "@/app/lib/schemas";
-import { createSession, destroySession } from "@/app/lib/session";
+import { createSession, destroySession, getSession } from "@/app/lib/session";
 
-/** What every form gets back. `errors` and `values` are keyed by field name. */
 export type FormState = {
   status: "idle" | "success" | "error";
   message?: string;
   errors?: Record<string, string[] | undefined>;
-  /**
-   * What the visitor typed. React resets an uncontrolled form whenever its
-   * action runs, so without echoing these back a failed validation would wipe
-   * everything they had written. Passwords are deliberately never included.
-   */
+
   values?: Record<string, string>;
 };
 
@@ -30,7 +27,6 @@ function submittedValues(formData: FormData) {
   const values: Record<string, string> = {};
 
   for (const [key, value] of formData.entries()) {
-    // React posts its own bookkeeping fields alongside the real ones.
     if (key.startsWith("$ACTION") || NEVER_ECHOED.includes(key)) continue;
     if (typeof value === "string") values[key] = value;
   }
@@ -49,8 +45,6 @@ function invalid(error: z.ZodError, formData: FormData): FormState {
   return {
     status: "error",
     errors: fieldErrors,
-    // A schema-level issue has no field to attach to; without this it would
-    // render nothing at all and the form would look like it did nothing.
     message: formErrors.length > 0 ? formErrors.join(" ") : undefined,
     values: submittedValues(formData),
   };
@@ -141,8 +135,6 @@ export async function logIn(
       email: auth.user.email,
     });
   } catch (error) {
-    // The API distinguishes "Cannot find user" from "Incorrect password";
-    // repeating that would let anyone probe which emails are registered.
     return failed(error, formData, "Email or password is incorrect.");
   }
 
@@ -186,4 +178,71 @@ export async function registerMember(
 export async function logOut() {
   await destroySession();
   redirect("/");
+}
+
+export async function addComment(
+  _previous: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const session = await getSession();
+
+  if (!session) {
+    return {
+      status: "error",
+      message: "You need to be logged in to comment.",
+    };
+  }
+
+  const blogpostId = Number(formData.get("blogpostId"));
+  const rawParent = formData.get("parentId");
+  const parentId = rawParent ? Number(rawParent) : null;
+
+  const parsed = commentSchema.safeParse({ content: formData.get("content") });
+  if (!parsed.success) return invalid(parsed.error, formData);
+
+  try {
+    await apiPost(
+      "/comments",
+      {
+        blogpostId,
+        userId: session.userId,
+        parentId,
+        name: session.name,
+        content: parsed.data.content,
+        date: new Date().toISOString(),
+      },
+      session.token,
+    );
+  } catch (error) {
+    return failed(error, formData);
+  }
+
+  revalidatePath(`/blog/${blogpostId}`);
+
+  return { status: "success" };
+}
+
+export async function deleteComment(
+  _previous: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const session = await getSession();
+
+  if (!session) {
+    return { status: "error", message: "You need to be logged in to do that." };
+  }
+
+  const id = Number(formData.get("commentId"));
+
+  try {
+    await apiDelete(`/comments/${id}`, session.token);
+  } catch (error) {
+    return failed(error, formData);
+  }
+
+  revalidatePath("/my-comments");
+  const blogpostId = formData.get("blogpostId");
+  if (blogpostId) revalidatePath(`/blog/${blogpostId}`);
+
+  return { status: "success", message: "Comment deleted." };
 }
