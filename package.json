@@ -1,11 +1,12 @@
 {
-    "name": "nightclub",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "concurrently -n app,api -c cyan,magenta \"cd nightclub && npm run dev\" \"cd api && npm start\""
-    },   
-    "devDependencies": {
-        "concurrently": "^8.2.2"
-    }
+  "name": "nightclub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n app,api -c cyan,magenta \"cd nightclub && npm run dev\" \"cd api && npm start\"",
+    "test:api": "node scripts/api-smoke.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }

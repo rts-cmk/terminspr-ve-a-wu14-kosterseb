@@ -20,8 +20,10 @@ const OFFERS = [
   },
 ];
 
-const STAGE_2 = "opacity-0 transition duration-500 delay-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100";
-const STAGE_3 = "opacity-0 transition-opacity duration-500 delay-1000 group-hover:opacity-100 group-focus-within:opacity-100";
+const STAGE_2 =
+  "opacity-0 transition duration-500 delay-500 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100";
+const STAGE_3 =
+  "opacity-0 transition-opacity duration-500 delay-1000 group-hover:opacity-100 group-focus-within:opacity-100";
 
 export default function Welcome() {
   return (
@@ -46,11 +48,17 @@ export default function Welcome() {
             <div className="absolute inset-0 bg-bg/0 transition-colors duration-500 group-hover:bg-bg/85 group-focus-within:bg-bg/85" />
 
             <div className="pointer-events-none absolute inset-6">
-              <span className={`absolute inset-x-0 top-0 h-px -translate-y-10 bg-pink ${STAGE_2}`} />
-              <span className={`absolute inset-x-0 bottom-0 h-px translate-y-10 bg-pink ${STAGE_2}`} />
+              <span
+                className={`absolute inset-x-0 top-0 h-px -translate-y-10 bg-pink ${STAGE_2}`}
+              />
+              <span
+                className={`absolute inset-x-0 bottom-0 h-px translate-y-10 bg-pink ${STAGE_2}`}
+              />
             </div>
 
-            <div className={`absolute inset-0 flex flex-col items-center justify-center gap-3 px-10 text-center ${STAGE_3}`}>
+            <div
+              className={`absolute inset-0 flex flex-col items-center justify-center gap-3 px-10 text-center ${STAGE_3}`}
+            >
               <h3 className="text-lg font-medium tracking-widest">
                 {offer.title}
               </h3>

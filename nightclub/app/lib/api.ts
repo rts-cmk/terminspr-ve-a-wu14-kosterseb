@@ -1,4 +1,5 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
 
 export type Asset = { url: string };
 
@@ -58,8 +59,7 @@ async function readErrorMessage(response: Response) {
     const body = await response.json();
     if (typeof body === "string") return body;
     if (body && typeof body.message === "string") return body.message;
-  } catch {
-  }
+  } catch {}
   return `Request failed (${response.status})`;
 }
 

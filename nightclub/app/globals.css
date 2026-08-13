@@ -1,11 +1,10 @@
 @import "tailwindcss";
 
-
 @theme {
-  --color-bg: #181818; 
-  --color-line: #383838; 
-  --color-pink: #ff2a70; 
-  --color-ink: #ffffff; 
+  --color-bg: #181818;
+  --color-line: #383838;
+  --color-pink: #ff2a70;
+  --color-ink: #ffffff;
 
   --font-sans: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
 

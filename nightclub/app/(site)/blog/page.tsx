@@ -9,9 +9,7 @@ export default function BlogPage() {
     <>
       <PageHeader title="Blog" />
       <Section>
-        <p className="text-center text-sm text-ink/40">
-          Blogs goes here
-        </p>
+        <p className="text-center text-sm text-ink/40">Blogs goes here</p>
       </Section>
     </>
   );

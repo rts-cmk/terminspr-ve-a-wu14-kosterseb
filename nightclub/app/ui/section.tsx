@@ -17,10 +17,7 @@ export default function Section({
   className?: string;
 }) {
   return (
-    <section
-      id={id}
-      className={`relative isolate py-section ${className}`}
-    >
+    <section id={id} className={`relative isolate py-section ${className}`}>
       {background && (
         <Image
           src={background}
