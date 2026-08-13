@@ -11,9 +11,7 @@ export default async function BlogPostPage(props: PageProps<"/blog/[id]">) {
     <>
       <PageHeader title="Blog Post" />
       <Section>
-        <p className="text-center text-sm text-ink/40">
-          Post #{id}
-        </p>
+        <p className="text-center text-sm text-ink/40">Post #{id}</p>
       </Section>
     </>
   );

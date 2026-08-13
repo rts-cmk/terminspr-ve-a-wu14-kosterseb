@@ -50,7 +50,6 @@ export default function Lightbox({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open, step]);
 
-
   return (
     <dialog
       ref={dialogRef}

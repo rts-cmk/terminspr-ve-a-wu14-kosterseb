@@ -56,7 +56,11 @@ function invalid(error: z.ZodError, formData: FormData): FormState {
   };
 }
 
-function failed(error: unknown, formData: FormData, message?: string): FormState {
+function failed(
+  error: unknown,
+  formData: FormData,
+  message?: string,
+): FormState {
   return {
     status: "error",
     message:
