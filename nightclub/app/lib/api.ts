@@ -132,18 +132,18 @@ export async function getBlogPosts({
   page = 1,
   limit = 3,
 }: { page?: number; limit?: number } = {}): Promise<{
-  posts: BlogPost[];
+  posts: BlogPostWithComments[];
   total: number;
 }> {
   const response = await fetch(
-    `${API_URL}/blogposts?page=${page}&limit=${limit}&sort=date&order=desc`,
+    `${API_URL}/blogposts?page=${page}&limit=${limit}&sort=date&order=desc&embed=comments`,
   );
 
   if (!response.ok) {
     throw new ApiError(await readErrorMessage(response), response.status);
   }
 
-  const posts = (await response.json()) as BlogPost[];
+  const posts = (await response.json()) as BlogPostWithComments[];
 
   return {
     posts,
