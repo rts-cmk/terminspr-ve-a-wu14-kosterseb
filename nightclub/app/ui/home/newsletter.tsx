@@ -1,8 +1,8 @@
-import { Button } from "@/app/ui/button";
 import { Input } from "@/app/ui/field";
-import PendingForm from "@/app/ui/forms/pending-form";
+import Form, { SubmitButton } from "@/app/ui/forms/form";
 import Section from "@/app/ui/section";
 import SectionHeading from "@/app/ui/section-heading";
+import { subscribeToNewsletter } from "@/app/lib/actions";
 
 export default function Newsletter() {
   return (
@@ -13,18 +13,22 @@ export default function Newsletter() {
         Subscribe to our newsletter and never miss an Event.
       </p>
 
-      <PendingForm className="mx-auto flex max-w-xl flex-col gap-4 sm:flex-row sm:items-start">
-        <div className="flex-1">
-          <Input
-            name="email"
-            label="Enter Your Email"
-            type="email"
-            required
-            autoComplete="email"
-          />
-        </div>
-        <Button type="submit">Subscribe</Button>
-      </PendingForm>
+      <div className="mx-auto max-w-xl">
+        <Form
+          action={subscribeToNewsletter}
+          className="flex flex-col gap-4 sm:flex-row sm:items-start"
+        >
+          <div className="flex-1">
+            <Input
+              name="email"
+              label="Enter Your Email"
+              type="email"
+              autoComplete="email"
+            />
+          </div>
+          <SubmitButton>Subscribe</SubmitButton>
+        </Form>
+      </div>
     </Section>
   );
 }
