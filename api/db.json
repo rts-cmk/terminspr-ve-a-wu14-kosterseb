@@ -11,6 +11,12 @@
       "password": "$2a$10$zIxWSMedACkDdtmC9W9UFOpxcFPa/4YJubxqk4t9r/ZwsiRR1llQK",
       "name": "Test User",
       "id": 2
+    },
+    {
+      "email": "tester@x.dk",
+      "password": "$2a$10$hg7PRhgpoR/9a138PJxPZOHwiC2MMbxduj5wFaioVTu7RGmFupZvm",
+      "name": "Tester",
+      "id": 3
     }
   ],
   "events": [
@@ -123,6 +129,33 @@
       "content": "What an amazing evening!",
       "date": "2022-01-03T16:43:02.002Z",
       "id": 2
+    },
+        {
+      "blogpostId": 3,
+      "userId": 1,
+      "parentId": null,
+      "name": "RDJ",
+      "content": "hello",
+      "date": "2026-08-13T00:00:00.000Z",
+      "id": 3
+    },
+    {
+      "blogpostId": 3,
+      "userId": 1,
+      "parentId": 3,
+      "name": "RDJ",
+      "content": "a reply",
+      "date": "2026-08-13T01:00:00.000Z",
+      "id": 4
+    },
+    {
+      "blogpostId": 3,
+      "userId": 1,
+      "parentId": null,
+      "name": "RDJ",
+      "content": "hold da kæft",
+      "date": "2026-08-13T02:00:00.000Z",
+      "id": 5
     }
   ],
   "gallery": [
