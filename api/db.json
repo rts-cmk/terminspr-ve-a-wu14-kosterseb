@@ -11,12 +11,6 @@
       "password": "$2a$10$zIxWSMedACkDdtmC9W9UFOpxcFPa/4YJubxqk4t9r/ZwsiRR1llQK",
       "name": "Test User",
       "id": 2
-    },
-    {
-      "email": "sebastian.dev.cph@gmail.com",
-      "password": "$2a$10$BERXU7RE57dCV.aNUaGzdeBtfnMKkO6jlAShiAT87Yk4sHfDLbSBO",
-      "name": "Sebastian Køster",
-      "id": 3
     }
   ],
   "events": [
