@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/app/ui/button";
+import { redirect } from "next/navigation";
 import { Input } from "@/app/ui/field";
-import PendingForm from "@/app/ui/forms/pending-form";
+import Form, { SubmitButton } from "@/app/ui/forms/form";
 import PageHeader from "@/app/ui/page-header";
 import Section from "@/app/ui/section";
+import { registerMember } from "@/app/lib/actions";
+import { getSession } from "@/app/lib/session";
 
 export const metadata: Metadata = { title: "Register" };
 
-export default function RegisterPage() {
+export default async function RegisterPage() {
+  if (await getSession()) redirect("/");
+
   return (
     <>
       <PageHeader title="Register" />
@@ -18,41 +22,28 @@ export default function RegisterPage() {
             Fill out the form below to register a membership.
           </p>
 
-          <PendingForm className="flex flex-col gap-5">
-            <Input
-              name="name"
-              label="Your Name"
-              required
-              minLength={2}
-              autoComplete="name"
-            />
+          <Form action={registerMember} className="flex flex-col gap-5">
+            <Input name="name" label="Your Name" autoComplete="name" />
             <Input
               name="email"
               label="Your Email"
               type="email"
-              required
               autoComplete="email"
             />
             <Input
               name="password"
               label="Your Password"
               type="password"
-              required
-              minLength={6}
               autoComplete="new-password"
             />
             <Input
               name="repeatPassword"
               label="Repeat Your Password"
               type="password"
-              required
-              minLength={6}
               autoComplete="new-password"
             />
-            <Button type="submit">
-              Register
-            </Button>
-          </PendingForm>
+            <SubmitButton>Register</SubmitButton>
+          </Form>
 
           <p className="mt-8 text-center text-sm text-ink/70">
             Already a member?{" "}

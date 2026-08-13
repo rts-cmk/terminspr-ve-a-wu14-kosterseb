@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Button } from "@/app/ui/button";
 import { Input, Textarea } from "@/app/ui/field";
-import PendingForm from "@/app/ui/forms/pending-form";
+import Form, { SubmitButton } from "@/app/ui/forms/form";
 import PageHeader from "@/app/ui/page-header";
 import Section from "@/app/ui/section";
+import { sendContactMessage } from "@/app/lib/actions";
 
 export const metadata: Metadata = { title: "Contact us" };
 
@@ -12,32 +12,19 @@ export default function ContactPage() {
     <>
       <PageHeader title="Contact Us" />
       <Section>
-        <PendingForm className="mx-auto flex max-w-xl flex-col gap-5">
-          <Input
-            name="name"
-            label="Your Name"
-            required
-            minLength={2}
-            autoComplete="name"
-          />
-          <Input
-            name="email"
-            label="Your Email"
-            type="email"
-            required
-            autoComplete="email"
-          />
-          <Textarea
-            name="content"
-            label="Your Comment"
-            required
-            minLength={10}
-            rows={6}
-          />
-          <Button type="submit" className="self-end">
-            Send
-          </Button>
-        </PendingForm>
+        <div className="mx-auto max-w-xl">
+          <Form action={sendContactMessage} className="flex flex-col gap-5">
+            <Input name="name" label="Your Name" autoComplete="name" />
+            <Input
+              name="email"
+              label="Your Email"
+              type="email"
+              autoComplete="email"
+            />
+            <Textarea name="content" label="Your Comment" rows={6} />
+            <SubmitButton className="self-end">Send</SubmitButton>
+          </Form>
+        </div>
       </Section>
     </>
   );
