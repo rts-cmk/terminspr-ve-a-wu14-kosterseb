@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Nav from "@/app/ui/nav";
 import { getSession } from "@/app/lib/session";
 import Hero from "@/app/ui/home/hero";
@@ -8,6 +9,7 @@ import Video from "@/app/ui/home/video";
 import Testimonials from "@/app/ui/home/testimonials";
 import RecentBlog from "@/app/ui/home/recent-blog";
 import Newsletter from "@/app/ui/home/newsletter";
+import { SectionLoading } from "@/app/ui/loading";
 
 // The hero picks its background at random
 export const dynamic = "force-dynamic";
@@ -22,14 +24,22 @@ export default async function HomePage() {
 
       <main className="flex-1">
         <Welcome />
-        <Events />
-        <Gallery />
+        <Suspense fallback={<SectionLoading title="Events of the Month" />}>
+          <Events />
+        </Suspense>
+        <Suspense fallback={<SectionLoading title="Night Club Gallery" />}>
+          <Gallery />
+        </Suspense>
 
         <Video />
 
-        <Testimonials />
+        <Suspense fallback={<SectionLoading title="Testimonials" />}>
+          <Testimonials />
+        </Suspense>
 
-        <RecentBlog />
+        <Suspense fallback={<SectionLoading title="Recent Blog" />}>
+          <RecentBlog />
+        </Suspense>
 
         <Newsletter />
       </main>
