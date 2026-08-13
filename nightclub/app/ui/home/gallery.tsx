@@ -1,14 +1,11 @@
-import Image from "next/image";
 import Container from "@/app/ui/container";
+import GalleryGrid from "@/app/ui/home/gallery-grid";
 import Message from "@/app/ui/message";
 import Section from "@/app/ui/section";
 import SectionHeading from "@/app/ui/section-heading";
 import { apiGet, type GalleryPhoto } from "@/app/lib/api";
 
 const SHOWN = 7;
-
-const TALL_TILE = 2;
-
 export default async function Gallery() {
   let photos: GalleryPhoto[];
 
@@ -25,9 +22,7 @@ export default async function Gallery() {
     );
   }
 
-  const selection = photos.slice(0, SHOWN);
-
-  if (selection.length === 0) {
+  if (photos.length === 0) {
     return (
       <Section id="gallery">
         <SectionHeading title="Night Club Gallery" />
@@ -44,29 +39,13 @@ export default async function Gallery() {
         <SectionHeading title="Night Club Gallery" />
       </Container>
 
-      <ul className="grid auto-rows-[29vw] grid-cols-2 gap-2 md:auto-rows-[14vw] md:grid-cols-4">
-        {selection.map((photo, index) => {
-          const isTall = index === TALL_TILE;
-
-          return (
-            <li
-              key={photo.id}
-              className={`group relative overflow-hidden ${
-                isTall ? "row-span-2" : ""
-              }`}
-            >
-              <Image
-                src={photo.asset.url}
-                alt={photo.description}
-                fill
-                sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-pink/0 transition-colors duration-500 group-hover:bg-pink/20" />
-            </li>
-          );
-        })}
-      </ul>
+      <GalleryGrid
+        shown={SHOWN}
+        images={photos.map((photo) => ({
+          url: photo.asset.url,
+          alt: photo.description,
+        }))}
+      />
     </Section>
   );
 }
