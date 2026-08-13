@@ -23,7 +23,7 @@ const COLLECTIONS = [
   { path: "/events", fields: ["id", "title", "description", "date", "location"] },
   { path: "/gallery", fields: ["id", "description"] },
   { path: "/testimonials", fields: ["id", "name", "content"] },
-  { path: "/blogposts", fields: ["id", "title", "author", "content"] },
+  { path: "/blogposts", fields: ["id", "title", "author", "content", "date"] },
 ];
 
 console.log(`Checking API at ${BASE}`);
@@ -44,6 +44,27 @@ for (const { path, fields } of COLLECTIONS) {
     `got ${JSON.stringify(row.asset)}`,
   );
 }
+
+const paged = await fetch(`${BASE}/blogposts?page=1&limit=1&sort=date&order=desc`);
+const pagedRows = await paged.json();
+
+check("blogposts honours page/limit", Array.isArray(pagedRows) && pagedRows.length === 1, `got ${pagedRows.length} rows`);
+check(
+  "blogposts reports X-Total-Count",
+  Number(paged.headers.get("x-total-count")) > 0,
+  `header was ${paged.headers.get("x-total-count")}`,
+);
+
+const sorted = await get("/blogposts?sort=date&order=desc");
+check(
+  "blogposts sorts newest first",
+  sorted.length > 1 && sorted[0].date >= sorted[sorted.length - 1].date,
+  `first ${sorted[0]?.date}, last ${sorted[sorted.length - 1]?.date}`,
+);
+
+const embedded = await get("/blogposts/3?embed=comments");
+check("blogposts/:id?embed=comments attaches comments", Array.isArray(embedded.comments));
+check("comments can be filtered by blogpostId", Array.isArray(await get("/comments?blogpostId=3")));
 
 const login = await fetch(`${BASE}/login`, {
   method: "POST",
@@ -71,6 +92,13 @@ const rejected = await fetch(`${BASE}/login`, {
   body: JSON.stringify({ email: "downey@mail.dk", password: "definitely-wrong" }),
 });
 check("POST /login rejects a wrong password", rejected.status === 400, `responded ${rejected.status}`);
+
+const unauth = await fetch(`${BASE}/comments`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ blogpostId: 1, userId: 1, name: "x", content: "x", date: "2026-01-01T00:00:00.000Z" }),
+});
+check("POST /comments is rejected without a token", unauth.status === 401, `responded ${unauth.status}`);
 
 console.log(failures === 0 ? "\nAll API checks passed." : `\n${failures} API check(s) failed.`);
 process.exit(failures === 0 ? 0 : 1);
