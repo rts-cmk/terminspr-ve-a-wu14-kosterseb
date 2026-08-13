@@ -17,7 +17,6 @@ import { getSession } from "@/app/lib/session";
 export const metadata: Metadata = { title: "My comments" };
 
 export default async function MyCommentsPage() {
-
   const session = await getSession();
   if (!session) redirect("/login");
 
