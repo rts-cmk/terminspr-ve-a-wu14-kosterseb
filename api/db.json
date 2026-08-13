@@ -315,6 +315,13 @@
       "email": "john@doe.com",
       "content": "Hi, can I book a table sometime Friday?",
       "date": "2022-02-04T23:00:01.251Z"
+    },
+    {
+      "name": "Sebastian Køster",
+      "email": "sebastian.dev.cph@gmail.com",
+      "content": "hello there",
+      "date": "2026-08-13T16:32:13.353Z",
+      "id": 2
     }
   ],
   "reservations": [
