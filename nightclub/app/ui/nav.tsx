@@ -137,6 +137,7 @@ export default function Nav({ loggedIn = false }: { loggedIn?: boolean }) {
                 <form action={logOut}>
                   <button
                     type="submit"
+                    onClick={() => setOpen(false)}
                     className="cursor-pointer text-2xl uppercase tracking-widest text-ink transition-colors hover:text-pink"
                   >
                     Log out
