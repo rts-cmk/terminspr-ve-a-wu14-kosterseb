@@ -49,6 +49,8 @@ export type Comment = {
 /** A post with its comments attached, via the API's `embed` parameter. */
 export type BlogPostWithComments = BlogPost & { comments: Comment[] };
 
+export type CommentWithPost = Comment & { blogpost: BlogPost };
+
 export async function apiGet<T>(path: string): Promise<T> {
   const response = await fetch(`${API_URL}${path}`);
 
@@ -162,9 +164,10 @@ export async function getBlogPost(id: string | number) {
   return apiGet<BlogPostWithComments>(`/blogposts/${id}?embed=comments`);
 }
 
-/** Every comment a member has written, newest first. */
 export async function getCommentsByUser(userId: number) {
-  return apiGet<Comment[]>(`/comments?userId=${userId}&sort=date&order=desc`);
+  return apiGet<CommentWithPost[]>(
+    `/comments?userId=${userId}&expand=blogpost&sort=date&order=desc`,
+  );
 }
 
 /** Formats a post date the way the design writes it, e.g. "16 Nov 2026". */
