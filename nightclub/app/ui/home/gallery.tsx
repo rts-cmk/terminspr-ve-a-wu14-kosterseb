@@ -22,9 +22,7 @@ export default async function Gallery() {
     );
   }
 
-  const selection = photos.slice(0, SHOWN);
-
-  if (selection.length === 0) {
+  if (photos.length === 0) {
     return (
       <Section id="gallery">
         <SectionHeading title="Night Club Gallery" />
@@ -42,7 +40,8 @@ export default async function Gallery() {
       </Container>
 
       <GalleryGrid
-        images={selection.map((photo) => ({
+        shown={SHOWN}
+        images={photos.map((photo) => ({
           url: photo.asset.url,
           alt: photo.description,
         }))}
