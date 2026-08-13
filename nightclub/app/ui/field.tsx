@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps, ReactNode } from "react";
-import { useFieldError } from "@/app/ui/forms/form";
+import { useFieldError, useFieldValue } from "@/app/ui/forms/form";
 
 const control =
   "w-full border border-line bg-transparent px-5 py-3.5 text-sm text-ink transition-colors placeholder:text-ink/60 hover:border-ink/40 focus:border-pink";
@@ -44,11 +44,16 @@ export function Input({
   // Called unconditionally (hook rules); the explicit prop still wins.
   const fromAction = useFieldError(name);
   const message = error ?? fromAction;
+  const lastValue = useFieldValue(name);
 
   return (
     <Wrapper id={name} label={label} error={message}>
       <input
         {...props}
+        // `key` forces a fresh input when the echoed value changes, so the
+        // re-seeded defaultValue actually takes effect after a reset.
+        key={lastValue}
+        defaultValue={props.defaultValue ?? lastValue}
         id={name}
         name={name}
         placeholder={props.placeholder ?? label}
@@ -69,11 +74,14 @@ export function Textarea({
 }: ComponentProps<"textarea"> & Shared) {
   const fromAction = useFieldError(name);
   const message = error ?? fromAction;
+  const lastValue = useFieldValue(name);
 
   return (
     <Wrapper id={name} label={label} error={message}>
       <textarea
         {...props}
+        key={lastValue}
+        defaultValue={props.defaultValue ?? lastValue}
         id={name}
         name={name}
         rows={props.rows ?? 5}

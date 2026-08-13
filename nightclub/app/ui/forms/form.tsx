@@ -23,6 +23,10 @@ export function useFieldError(name: string) {
   return useContext(FormStateContext).errors?.[name]?.[0];
 }
 
+export function useFieldValue(name: string) {
+  return useContext(FormStateContext).values?.[name];
+}
+
 /** Wraps a Server Action with `useActionState`. `className` styles the fields only */
 export default function Form({
   action,
