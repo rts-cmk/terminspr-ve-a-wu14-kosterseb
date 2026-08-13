@@ -43,11 +43,6 @@ export type Comment = {
   name: string;
   content: string;
   date: string;
-  /**
-   * The API has no concept of replies, but json-server stores whatever it is
-   * given, so a reply is a comment carrying the id of the one it answers.
-   * Top-level comments leave it null.
-   */
   parentId?: number | null;
 };
 
@@ -132,13 +127,6 @@ export async function apiDelete(path: string, token: string) {
   }
 }
 
-/*
-  json-server-relationship drops the underscore json-server uses: it is
-  `page`, `limit`, `sort`, `order` and `embed`, not `_page`, `_limit` and so on.
-  Getting this wrong is silent — `_page=1&_limit=3` returns every row with no
-  error, so pagination looks broken rather than misconfigured.
-*/
-
 /** The blog list: newest first, one page at a time. */
 export async function getBlogPosts({
   page = 1,
@@ -159,8 +147,6 @@ export async function getBlogPosts({
 
   return {
     posts,
-    // The header is how the API reports the unpaginated size; without it we
-    // could not know how many pages there are.
     total: Number(response.headers.get("X-Total-Count") ?? posts.length),
   };
 }
@@ -179,4 +165,14 @@ export async function getBlogPost(id: string | number) {
 /** Every comment a member has written, newest first. */
 export async function getCommentsByUser(userId: number) {
   return apiGet<Comment[]>(`/comments?userId=${userId}&sort=date&order=desc`);
+}
+
+/** Formats a post date the way the design writes it, e.g. "16 Nov 2026". */
+export function formatPostDate(iso: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(iso));
 }
