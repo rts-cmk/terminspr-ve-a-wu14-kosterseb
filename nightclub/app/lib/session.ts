@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { sessionSchema } from "@/app/lib/schemas";
 
 const COOKIE_NAME = "nightclub_session";
 
@@ -17,7 +18,8 @@ export async function getSession(): Promise<Session | null> {
   if (!raw) return null;
 
   try {
-    return JSON.parse(raw) as Session;
+    const parsed = sessionSchema.safeParse(JSON.parse(raw));
+    return parsed.success ? parsed.data : null;
   } catch {
     return null;
   }

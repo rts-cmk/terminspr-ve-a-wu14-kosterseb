@@ -35,3 +35,10 @@ export const registerSchema = z
 export const commentSchema = z.object({
   content: z.string().trim().min(2, "Please write a comment"),
 });
+
+export const sessionSchema = z.object({
+  token: z.string().min(1),
+  userId: z.number().int().positive(),
+  name: z.string().min(1),
+  email: z.email(),
+});
