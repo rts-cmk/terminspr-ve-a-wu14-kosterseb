@@ -43,6 +43,46 @@ export async function apiGet<T>(path: string): Promise<T> {
 
   return response.json() as Promise<T>;
 }
+export class ApiError extends Error {
+  readonly status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
+async function readErrorMessage(response: Response) {
+  try {
+    const body = await response.json();
+    if (typeof body === "string") return body;
+    if (body && typeof body.message === "string") return body.message;
+  } catch {
+  }
+  return `Request failed (${response.status})`;
+}
+
+export async function apiPost<T>(
+  path: string,
+  body: unknown,
+  token?: string,
+): Promise<T> {
+  const response = await fetch(`${API_URL}${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new ApiError(await readErrorMessage(response), response.status);
+  }
+
+  return response.json() as Promise<T>;
+}
 
 /** Formats an API date */
 export function formatDate(iso: string) {
