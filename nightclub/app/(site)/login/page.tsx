@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/app/ui/button";
+import { redirect } from "next/navigation";
 import { Input } from "@/app/ui/field";
-import PendingForm from "@/app/ui/forms/pending-form";
+import Form, { SubmitButton } from "@/app/ui/forms/form";
 import PageHeader from "@/app/ui/page-header";
 import Section from "@/app/ui/section";
+import { logIn } from "@/app/lib/actions";
+import { getSession } from "@/app/lib/session";
 
 export const metadata: Metadata = { title: "Log in" };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  // Nothing to do here if they are already a member.
+  if (await getSession()) redirect("/");
+
   return (
     <>
       <PageHeader title="Log In" />
@@ -18,26 +23,21 @@ export default function LoginPage() {
             Please provide email and password to log in.
           </p>
 
-          <PendingForm className="flex flex-col gap-5">
+          <Form action={logIn} className="flex flex-col gap-5">
             <Input
               name="email"
               label="Email"
               type="email"
-              required
               autoComplete="email"
             />
             <Input
               name="password"
               label="Password"
               type="password"
-              required
-              minLength={6}
               autoComplete="current-password"
             />
-            <Button type="submit" className="self-end">
-              Log In
-            </Button>
-          </PendingForm>
+            <SubmitButton>Log In</SubmitButton>
+          </Form>
 
           <p className="mt-8 text-center text-sm text-ink/70">
             Are you not yet a member? Do you want to be a part of our exclusive

@@ -5,6 +5,12 @@
       "password": "$2a$10$EZ/BnVuNQcWki1piqlVOfOqt.eDOsejHAGKxxfUOfOR55VFNBtLlC",
       "name": "Robert Downey Jr.",
       "id": 1
+    },
+    {
+      "email": "user@nightclub.dk",
+      "password": "$2a$10$zIxWSMedACkDdtmC9W9UFOpxcFPa/4YJubxqk4t9r/ZwsiRR1llQK",
+      "name": "Test User",
+      "id": 2
     }
   ],
   "events": [

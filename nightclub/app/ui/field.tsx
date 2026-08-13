@@ -1,4 +1,7 @@
+"use client";
+
 import type { ComponentProps, ReactNode } from "react";
+import { useFieldError, useFieldValue } from "@/app/ui/forms/form";
 
 const control =
   "w-full border border-line bg-transparent px-5 py-3.5 text-sm text-ink transition-colors placeholder:text-ink/60 hover:border-ink/40 focus:border-pink";
@@ -38,16 +41,25 @@ export function Input({
   className = "",
   ...props
 }: ComponentProps<"input"> & Shared) {
+  // Called unconditionally (hook rules); the explicit prop still wins.
+  const fromAction = useFieldError(name);
+  const message = error ?? fromAction;
+  const lastValue = useFieldValue(name);
+
   return (
-    <Wrapper id={name} label={label} error={error}>
+    <Wrapper id={name} label={label} error={message}>
       <input
         {...props}
+        // `key` forces a fresh input when the echoed value changes, so the
+        // re-seeded defaultValue actually takes effect after a reset.
+        key={lastValue}
+        defaultValue={props.defaultValue ?? lastValue}
         id={name}
         name={name}
         placeholder={props.placeholder ?? label}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? `${name}-error` : undefined}
-        className={`${control} ${error ? "border-pink" : ""} ${className}`}
+        aria-invalid={message ? true : undefined}
+        aria-describedby={message ? `${name}-error` : undefined}
+        className={`${control} ${message ? "border-pink" : ""} ${className}`}
       />
     </Wrapper>
   );
@@ -60,17 +72,23 @@ export function Textarea({
   className = "",
   ...props
 }: ComponentProps<"textarea"> & Shared) {
+  const fromAction = useFieldError(name);
+  const message = error ?? fromAction;
+  const lastValue = useFieldValue(name);
+
   return (
-    <Wrapper id={name} label={label} error={error}>
+    <Wrapper id={name} label={label} error={message}>
       <textarea
         {...props}
+        key={lastValue}
+        defaultValue={props.defaultValue ?? lastValue}
         id={name}
         name={name}
         rows={props.rows ?? 5}
         placeholder={props.placeholder ?? label}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? `${name}-error` : undefined}
-        className={`${control} resize-y ${error ? "border-pink" : ""} ${className}`}
+        aria-invalid={message ? true : undefined}
+        aria-describedby={message ? `${name}-error` : undefined}
+        className={`${control} resize-y ${message ? "border-pink" : ""} ${className}`}
       />
     </Wrapper>
   );

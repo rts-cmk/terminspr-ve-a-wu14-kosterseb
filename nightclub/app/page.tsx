@@ -1,4 +1,5 @@
 import Nav from "@/app/ui/nav";
+import { getSession } from "@/app/lib/session";
 import Hero from "@/app/ui/home/hero";
 import Welcome from "@/app/ui/home/welcome";
 import Events from "@/app/ui/home/events";
@@ -10,11 +11,13 @@ import Newsletter from "@/app/ui/home/newsletter";
 // The hero picks its background at random
 export const dynamic = "force-dynamic";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getSession();
+
   return (
     <>
       <Hero />
-      <Nav />
+      <Nav loggedIn={Boolean(session)} />
 
       <main className="flex-1">
         <Welcome />

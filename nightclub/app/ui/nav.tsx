@@ -7,23 +7,29 @@ import { useState } from "react";
 import Container from "@/app/ui/container";
 import Logo from "@/app/ui/logo";
 import { CloseIcon, MenuIcon } from "@/app/ui/icons";
+import { logOut } from "@/app/lib/actions";
 
-/** Single source of truth for the main navigation. */
-export const NAV_LINKS = [
+const PUBLIC_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
   { href: "/book", label: "Book Table" },
   { href: "/contact", label: "Contact us" },
-  { href: "/login", label: "Log in" },
 ];
+
+/** My Comments only appears for members, per the assignment. */
+const MEMBER_LINKS = [{ href: "/my-comments", label: "My Comments" }];
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
-export default function Nav() {
+export default function Nav({ loggedIn = false }: { loggedIn?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  const links = loggedIn
+    ? [...PUBLIC_LINKS, ...MEMBER_LINKS]
+    : [...PUBLIC_LINKS, { href: "/login", label: "Log in" }];
 
   return (
     <>
@@ -41,7 +47,7 @@ export default function Nav() {
           <Logo />
 
           <ul className="hidden items-center gap-8 md:flex">
-            {NAV_LINKS.map((link) => {
+            {links.map((link) => {
               const active = isActive(pathname, link.href);
 
               return (
@@ -67,6 +73,19 @@ export default function Nav() {
                 </li>
               );
             })}
+
+            {loggedIn && (
+              <li>
+                <form action={logOut}>
+                  <button
+                    type="submit"
+                    className="cursor-pointer pb-3 text-xs uppercase tracking-widest text-ink transition-colors hover:text-pink"
+                  >
+                    Log out
+                  </button>
+                </form>
+              </li>
+            )}
           </ul>
 
           <button
@@ -94,7 +113,7 @@ export default function Nav() {
           </Container>
 
           <ul className="flex flex-1 flex-col items-center justify-center gap-10">
-            {NAV_LINKS.map((link) => (
+            {links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -112,6 +131,20 @@ export default function Nav() {
                 </Link>
               </li>
             ))}
+
+            {loggedIn && (
+              <li>
+                <form action={logOut}>
+                  <button
+                    type="submit"
+                    onClick={() => setOpen(false)}
+                    className="cursor-pointer text-2xl uppercase tracking-widest text-ink transition-colors hover:text-pink"
+                  >
+                    Log out
+                  </button>
+                </form>
+              </li>
+            )}
           </ul>
         </div>
       )}
