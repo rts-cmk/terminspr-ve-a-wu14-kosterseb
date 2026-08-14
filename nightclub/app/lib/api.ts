@@ -14,6 +14,7 @@ export type Event = {
 
 export type GalleryPhoto = {
   id: number;
+  title: string;
   description: string;
   asset: Asset;
 };

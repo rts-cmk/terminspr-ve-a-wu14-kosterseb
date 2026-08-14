@@ -21,7 +21,7 @@ async function get(path) {
 
 const COLLECTIONS = [
   { path: "/events", fields: ["id", "title", "description", "date", "location"] },
-  { path: "/gallery", fields: ["id", "description"] },
+  { path: "/gallery", fields: ["id", "title", "description"] },
   { path: "/testimonials", fields: ["id", "name", "content"] },
   { path: "/blogposts", fields: ["id", "title", "author", "content", "date"] },
 ];
