@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import CornerMarks from "@/app/ui/corner-marks";
 import Lightbox, { type LightboxImage } from "@/app/ui/lightbox";
 import { useInView } from "@/app/ui/use-in-view";
 
@@ -48,9 +49,12 @@ export default function GalleryGrid({
                 alt={image.alt}
                 fill
                 sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover"
               />
-              <span className="absolute inset-0 bg-pink/0 transition-colors duration-500 group-hover:bg-pink/20" />
+              <span className="absolute inset-0 bg-bg/0 transition-colors duration-500 group-hover:bg-bg/60" />
+              <span className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <CornerMarks size="size-10" />
+              </span>
             </button>
           </li>
         ))}

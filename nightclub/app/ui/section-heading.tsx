@@ -1,10 +1,11 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
 export default function SectionHeading({
   title,
   className = "mb-12",
 }: {
-  title: string;
+  title: ReactNode;
   className?: string;
 }) {
   return (

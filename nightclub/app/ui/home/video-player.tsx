@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/app/ui/icons";
 
 export type Video = { src: string; title: string; date: string };
 
@@ -10,9 +11,9 @@ export default function VideoPlayer({ videos }: { videos: Video[] }) {
   const [failed, setFailed] = useState(false);
   const current = videos[index];
 
-  function select(next: number) {
+  function step(delta: number) {
     setFailed(false);
-    setIndex(next);
+    setIndex((index + delta + videos.length) % videos.length);
   }
 
   return (
@@ -50,31 +51,34 @@ export default function VideoPlayer({ videos }: { videos: Video[] }) {
         )}
       </div>
 
-      <ul className="grid gap-4 sm:grid-cols-2">
-        {videos.map((video, position) => {
-          const active = position === index;
+      <div className="flex items-center justify-between gap-6">
+        <button
+          type="button"
+          onClick={() => step(-1)}
+          aria-label="Previous video"
+          className="flex size-10 shrink-0 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
+        >
+          <ChevronLeftIcon className="size-5" />
+        </button>
 
-          return (
-            <li key={video.src}>
-              <button
-                type="button"
-                onClick={() => select(position)}
-                aria-current={active}
-                className={`flex w-full cursor-pointer flex-col items-start gap-1 border p-4 text-left transition-colors ${
-                  active
-                    ? "border-pink text-ink"
-                    : "border-line text-ink/70 hover:border-ink/40 hover:text-ink"
-                }`}
-              >
-                <span className="text-xs uppercase tracking-widest">
-                  {video.title}
-                </span>
-                <span className="text-xs text-ink/50">{video.date}</span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+        <p className="flex flex-col items-center gap-1 text-center">
+          <span className="text-xs uppercase tracking-widest">
+            {current.title}
+          </span>
+          <span className="text-xs text-ink/50">
+            {current.date} — {index + 1} / {videos.length}
+          </span>
+        </p>
+
+        <button
+          type="button"
+          onClick={() => step(1)}
+          aria-label="Next video"
+          className="flex size-10 shrink-0 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
+        >
+          <ChevronRightIcon className="size-5" />
+        </button>
+      </div>
     </div>
   );
 }

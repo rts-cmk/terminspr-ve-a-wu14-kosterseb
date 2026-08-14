@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Container from "@/app/ui/container";
+import CornerMarks from "@/app/ui/corner-marks";
 import Logo from "@/app/ui/logo";
 import { CloseIcon, MenuIcon } from "@/app/ui/icons";
 import { logOut } from "@/app/lib/actions";
@@ -34,14 +35,7 @@ export default function Nav({ loggedIn = false }: { loggedIn?: boolean }) {
   return (
     <>
       <nav className="sticky top-0 z-50 border border-pink bg-bg/95 backdrop-blur">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute left-0 top-0 size-4 bg-pink [clip-path:polygon(0_0,100%_0,0_100%)]"
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 right-0 size-4 bg-pink [clip-path:polygon(100%_0,100%_100%,0_100%)]"
-        />
+        <CornerMarks />
 
         <Container className="flex items-center justify-between py-4">
           <Logo />

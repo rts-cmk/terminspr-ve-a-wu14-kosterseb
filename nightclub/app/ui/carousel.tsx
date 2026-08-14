@@ -86,8 +86,8 @@ export default function Carousel({
                   onClick={() => goTo(position)}
                   aria-label={`Go to slide ${position + 1}`}
                   aria-current={position === index}
-                  className={`size-2.5 cursor-pointer rounded-full transition-colors ${
-                    position === index ? "bg-pink" : "bg-line hover:bg-ink/50"
+                  className={`size-2.5 cursor-pointer transition-colors ${
+                    position === index ? "bg-pink" : "bg-ink hover:bg-pink/60"
                   }`}
                 />
               </li>
