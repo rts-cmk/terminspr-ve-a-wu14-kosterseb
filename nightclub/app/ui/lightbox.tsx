@@ -2,9 +2,15 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
-import { ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "@/app/ui/icons";
+import { ButtonLink } from "@/app/ui/button";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/app/ui/icons";
 
-export type LightboxImage = { url: string; alt: string };
+export type LightboxImage = {
+  url: string;
+  alt: string;
+  title?: string;
+  text?: string;
+};
 
 export default function Lightbox({
   images,
@@ -54,57 +60,67 @@ export default function Lightbox({
     <dialog
       ref={dialogRef}
       aria-label={label}
-      aria-modal="true"
+      // onClose also fires for Escape, so state stays in sync either way.
       onClose={onClose}
+      // A click that lands on the dialog itself is a click on the backdrop.
       onClick={(event) => {
         if (event.target === dialogRef.current) onClose();
       }}
-      className="m-auto max-h-none max-w-none bg-transparent p-0 text-ink backdrop:bg-black/90"
+      className="m-auto w-full max-w-[96vw] bg-transparent p-0 text-ink backdrop:bg-black/90"
     >
       {index !== null && (
-        <div className="flex flex-col items-center gap-4 p-4">
-          <div className="flex w-full items-center justify-between gap-4">
-            <p className="text-xs uppercase tracking-widest text-ink/60">
-              {index + 1} / {images.length}
-            </p>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close"
-              className="flex size-9 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
-            >
-              <CloseIcon className="size-5" />
-            </button>
-          </div>
 
-          <Image
-            src={images[index].url}
-            alt={images[index].alt}
-            width={970}
-            height={674}
-            sizes="90vw"
-            priority
-            className="max-h-[70vh] w-auto object-contain"
-          />
+        <div className="flex items-center gap-3 sm:gap-8">
+          <button
+            type="button"
+            onClick={() => step(-1)}
+            aria-label="Previous image"
+            className="flex size-9 shrink-0 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
+          >
+            <ChevronLeftIcon className="size-5" />
+          </button>
 
-          <div className="flex w-full items-center justify-center gap-6">
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              aria-label="Previous image"
-              className="flex size-10 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
-            >
-              <ChevronLeftIcon className="size-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              aria-label="Next image"
-              className="flex size-10 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
-            >
-              <ChevronRightIcon className="size-5" />
-            </button>
-          </div>
+          <figure className="min-w-0 flex-1">
+            <div className="relative">
+              <Image
+                src={images[index].url}
+                alt={images[index].alt}
+                width={970}
+                height={674}
+                sizes="90vw"
+                priority
+                className="max-h-[70vh] w-full object-contain"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-0 right-0 size-10 bg-pink [clip-path:polygon(100%_0,100%_100%,0_100%)]"
+              />
+            </div>
+
+            <figcaption className="flex flex-col gap-4 bg-bg px-6 py-6 sm:px-8">
+              <h2 className="text-lg font-medium tracking-widest">
+                {images[index].title ?? images[index].alt}
+              </h2>
+              <p className="text-sm leading-relaxed text-ink/70">
+                {images[index].text ?? images[index].alt}
+              </p>
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs uppercase tracking-widest text-ink/40">
+                  {index + 1} / {images.length}
+                </span>
+                <ButtonLink href="/blog">Read More</ButtonLink>
+              </div>
+            </figcaption>
+          </figure>
+
+          <button
+            type="button"
+            onClick={() => step(1)}
+            aria-label="Next image"
+            className="flex size-9 shrink-0 cursor-pointer items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
+          >
+            <ChevronRightIcon className="size-5" />
+          </button>
         </div>
       )}
     </dialog>

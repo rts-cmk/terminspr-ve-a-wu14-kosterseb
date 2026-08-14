@@ -44,6 +44,8 @@ export default async function Gallery() {
         images={photos.map((photo) => ({
           url: photo.asset.url,
           alt: photo.description,
+          title: photo.title,
+          text: photo.description,
         }))}
       />
     </Section>
