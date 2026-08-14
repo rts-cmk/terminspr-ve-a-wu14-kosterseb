@@ -122,101 +122,115 @@
   "gallery": [
     {
       "id": 1,
+      "title": "Saturday Main Room",
+      "description": "The main room at full tilt, somewhere around two in the morning.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery1_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 2,
+      "title": "Live On Center Stage",
+      "description": "A live set on Center Stage, with the crowd pressed to the front.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery2_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 3,
+      "title": "Friday Warm-Up",
+      "description": "Early evening on the floor, before the main room opens.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery3_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 4,
+      "title": "Guest DJ Night",
+      "description": "A guest behind the decks for the monthly takeover.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery4_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 5,
+      "title": "The Long Bar",
+      "description": "Cocktails going out across the long bar on a busy night.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery5_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 6,
+      "title": "Sunrise Set",
+      "description": "The closing set, played to whoever is still standing.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery6_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 7,
+      "title": "Summer Terrace",
+      "description": "The terrace in full swing on a warm night.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery7_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 8,
+      "title": "Backstage",
+      "description": "A quiet moment backstage before the doors open.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery8_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 9,
+      "title": "Neon Hour",
+      "description": "Neon and smoke over the dance floor.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery9_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 10,
+      "title": "House Band",
+      "description": "The house band running through their first number.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery10_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 11,
+      "title": "Crowd Favourite",
+      "description": "The room singing along to a song everybody knows.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery11_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 12,
+      "title": "Late Night Bar",
+      "description": "Last orders at the bar, long after midnight.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery12_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 13,
+      "title": "Confetti Drop",
+      "description": "Confetti over the floor at the end of the night.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery13_big.jpg"
-      },
-      "description": "A photo"
+      }
     },
     {
       "id": 14,
+      "title": "Closing Time",
+      "description": "The lights coming up on an empty floor.",
       "asset": {
         "url": "http://localhost:4000/file-bucket/gallery14_big.jpg"
-      },
-      "description": "A photo"
+      }
     }
   ],
   "testimonials": [

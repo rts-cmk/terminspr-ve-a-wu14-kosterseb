@@ -10,6 +10,10 @@ export default function Logo({
   href?: string | null;
   className?: string;
 }) {
+  const size =
+    className ||
+    (variant === "main" ? "h-auto w-full" : "h-auto w-[140px] sm:w-[183px]");
+
   const image =
     variant === "main" ? (
       <Image
@@ -18,7 +22,7 @@ export default function Logo({
         width={770}
         height={116}
         priority
-        className={`h-auto w-full ${className}`}
+        className={size}
       />
     ) : (
       <Image
@@ -26,7 +30,7 @@ export default function Logo({
         alt="Night Club"
         width={183}
         height={43}
-        className={`h-auto w-[140px] sm:w-[183px] ${className}`}
+        className={size}
       />
     );
 

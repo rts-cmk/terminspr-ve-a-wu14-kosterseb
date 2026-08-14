@@ -78,3 +78,27 @@ export function ChevronRightIcon(props: SVGProps<SVGSVGElement>) {
     </Icon>
   );
 }
+
+export function MusicIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <path d="M12 3v10.6a4 4 0 1 0 2 3.4V7h5V3h-7Zm-2 15a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" />
+    </Icon>
+  );
+}
+
+export function DishIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <path d="M12 5a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8Zm-1-3h2v2h-2V2ZM3 15h18v2H3v-2Z" />
+    </Icon>
+  );
+}
+
+export function CocktailIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Icon {...props}>
+      <path d="M3 4h18l-8 9v6h4v2H7v-2h4v-6L3 4Zm3.5 2 2 2h7l2-2h-11Z" />
+    </Icon>
+  );
+}
