@@ -14,6 +14,7 @@ function CommentBody({ comment }: { comment: Comment }) {
   );
 }
 
+// a reply is a comment with parentId. no parentId means top level
 export default function CommentList({
   comments,
   blogpostId,

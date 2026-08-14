@@ -115,6 +115,7 @@ export async function sendContactMessage(
   };
 }
 
+// the error is vague on purpose, so you cannot test which emails exist
 export async function logIn(
   _previous: FormState,
   formData: FormData,
@@ -180,6 +181,8 @@ export async function logOut() {
   redirect("/");
 }
 
+// comment: members only. name and userId come from the session, not the form
+// a reply is the same thing with parentId, which the API does not know about
 export async function addComment(
   _previous: FormState,
   formData: FormData,
@@ -222,6 +225,7 @@ export async function addComment(
   return { status: "success" };
 }
 
+// the API checks ownership too and answers 403 on someone else's comment
 export async function deleteComment(
   _previous: FormState,
   formData: FormData,
