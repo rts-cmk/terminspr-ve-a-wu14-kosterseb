@@ -30,18 +30,20 @@ export default async function Hero() {
           priority
           className="h-auto w-full max-w-[min(90vw,770px)] animate-fold-in"
         />
-        <p className="animate-drop-in text-sm uppercase tracking-[0.4em] text-ink/80 sm:text-base">
-          Have a good time
-        </p>
+        <div className="animate-drop-in flex flex-col items-center gap-4">
+          <p className="text-sm uppercase tracking-[0.4em] text-ink/80 sm:text-base">
+            Have a good time
+          </p>
+          <Image
+            src="/bottom_line.png"
+            alt=""
+            width={1364}
+            height={109}
+            priority
+            className="pointer-events-none h-auto w-full max-w-[min(80vw,680px)] select-none"
+          />
+        </div>
       </div>
-
-      <Image
-        src="/bottom_line.png"
-        alt=""
-        width={1364}
-        height={109}
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-auto w-full select-none"
-      />
     </header>
   );
 }
