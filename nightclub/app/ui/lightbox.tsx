@@ -69,7 +69,6 @@ export default function Lightbox({
       className="m-auto w-full max-w-[96vw] bg-transparent p-0 text-ink backdrop:bg-black/90"
     >
       {index !== null && (
-
         <div className="flex items-center gap-3 sm:gap-8">
           <button
             type="button"
