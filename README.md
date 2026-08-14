@@ -56,6 +56,11 @@ that starts the API and verifies the fields the site reads.
 
 <img src="dokumentation/images/github_CI.png" alt="CI" width="480">
 
+## Progress
+
+Work is tracked on [GitHub Projects](https://github.com/orgs/rts-cmk/projects/8/views/1) — what is done, and what is still
+open.
+
 ## Documentation
 
 - [`projektdokumentation.md`](projektdokumentation.md): the report

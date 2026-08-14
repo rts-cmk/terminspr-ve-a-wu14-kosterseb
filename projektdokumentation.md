@@ -255,6 +255,10 @@ reads. Lint and build pass happily on a broken `db.json`, this does not.
 I finished the mandatory part and both optional tasks, and I got them done
 rather than leaving several things half built.
 
+The work was tracked on [GitHub Projects](https://github.com/orgs/rts-cmk/projects/8/views/1).
+Issues were opened per piece of work and closed by the pull request that solved
+them, so the board shows the order things were built in and what is still open.
+
 Working in small branches with one pull request per topic went well. It made it
 easy to see what was done, and CI caught mistakes before they reached
 `development`, among them a missing `}` in `globals.css` that broke the build.
