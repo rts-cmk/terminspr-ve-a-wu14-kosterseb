@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #181818;
+  --color-line: #383838;
+  --color-pink: #ff2a70;
+  --color-ink: #ffffff;
+
+  --font-sans: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-gutter: 1.25rem;
+  --spacing-section: 5rem;
+
+  --animate-fold-in: fold-in 0.9s ease-out both;
+  --animate-drop-in: drop-in 0.6s ease-out 0.9s both;
+}
+
+@keyframes fold-in {
+  from {
+    opacity: 0;
+    transform: perspective(800px) rotateX(-90deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    background-image: url("/bg/main_bg.png");
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    background-color: var(--color-pink);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-pink);
+    outline-offset: 2px;
+  }
+}
