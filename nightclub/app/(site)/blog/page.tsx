@@ -17,6 +17,7 @@ function readPage(value: string | string[] | undefined) {
   return Number.isInteger(page) && page > 0 ? page : 1;
 }
 
+// bad page number -> page 1. past the end -> notFound(), it is a broken link
 export default async function BlogPage(props: PageProps<"/blog">) {
   const page = readPage((await props.searchParams).page);
 

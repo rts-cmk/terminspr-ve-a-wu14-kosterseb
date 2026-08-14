@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/app/ui/icons";
 
+// hover or focus pauses. using an arrow or a dot stops it for good
 export default function Carousel({
   slides,
   label,
