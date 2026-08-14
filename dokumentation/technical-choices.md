@@ -78,6 +78,19 @@ The pager is `<Link>`, not a click handler. Every page has its own url, and the
 back button behaves. It also renders when there is only one page, so the
 feature is visible rather than looking missing.
 
+## Reading the demo videos
+
+A single poster frame is not enough to judge an animation. The four clips were
+sampled into frames, and section 1's timing was measured by tracking how dark
+the middle card gets frame by frame: it drops sharply between 2.5s and 2.8s,
+which is the black box, then the text fades in until about 3.6s.
+
+That is where the 0.3s cover and the roughly 1.0s total come from, rather than
+the round 1.5s in the brief. Where the demo and the brief disagree the brief
+wins on content, the demo wins on timing and layout: the event card keeps its
+name, description and Book Now because the brief requires them, but they appear
+on hover the way the video shows.
+
 ## CI
 
 Four checks: Lint, Format, Build, API contract.

@@ -214,6 +214,21 @@ Data is fetched in server components. Only what has to react to a click is
 client: the carousel, the lightbox, the forms and the navigation. The carousel
 gets its slides as a prop, so the API code never ends up in the browser.
 
+### Matching the demo
+
+Four demo clips came with the assignment. Reading them properly meant pulling
+frames out, not guessing from a poster image:
+
+- Section 1 covers in about 0.3s and finishes near 1.0s, not the 1.5s the brief
+  states. Timed off the video, since that is the visual reference.
+- Pink corner wedges are a recurring motif: on the nav, on a hovered offer in
+  section 1, on a hovered gallery tile and on a hovered event card. They live in
+  one component, `app/ui/corner-marks.tsx`.
+- An event card is the photo alone with date, time and place on a pink bar.
+  Hovering darkens it and brings in the name, description and Book Now.
+- The lightbox has its arrows outside the image and a panel underneath with the
+  title and text, which is why the gallery rows in the API were given both.
+
 ### Error handling
 
 Three layers:
@@ -249,8 +264,13 @@ first. That is why I found out late that `json-server-relationship` uses `page`
 and `limit` without an underscore, and that blog posts have no date field at
 all. An hour spent on that up front would have made the planning better.
 
-I did not get through the demo videos and the animations properly. That is
-written down in `dokumentation/not-built.md` along with the rest.
+I did get through the demo videos in the end, and it changed things. Reading
+the brief only, section 1 was built as three half-second steps because the text
+says the animation takes 1.5 seconds. Sampling the video shows the black box
+lands in about 0.3s and the whole reveal settles near 1.0s, so it is timed off
+the video now. The same pass found the corner wedges on hovered cards and
+tiles, the event card's hover panel, and the layout of the lightbox. What is
+still open is written down in `dokumentation/not-built.md`.
 
 ---
 

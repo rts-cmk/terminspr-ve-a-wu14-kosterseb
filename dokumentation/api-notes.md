@@ -29,6 +29,14 @@ check in CI now asserts `page`/`limit` and the `X-Total-Count` header so nobody
 `expand` is what lets My Comments link back to each post without a request per
 row.
 
+## Gallery rows had no title and one shared description
+
+Every row came with `description: "A photo"` and nothing else, so the lightbox
+had nothing to put under the image and all 14 images announced the same alt
+text. Each row was given a `title` and a real `description` in `db.json` and
+`db_backup.json`. The contract check asserts the title so it cannot quietly go
+missing.
+
 ## Blog posts have no date
 
 The supplied `blogposts` rows are `id, title, author, content, asset`. The

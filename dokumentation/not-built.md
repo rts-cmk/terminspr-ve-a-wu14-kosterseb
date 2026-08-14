@@ -22,29 +22,17 @@ on a public url. Running locally is the intended setup, not a shortcut.
 
 ## Ran out of time
 
-**The demo videos.** Four demo clips came with the assignment showing the
-animations: the hero logo, section 1, section 2 and section 3. I built all four
-animations from the written brief and the Figma file, but I never sat down and
-compared them frame by frame with the demos.
+**Polish against the Figma, screen by screen.** The front page and the footer
+have been checked against the demos and the mobile design. The rest of the
+pages, blog, contact, log in, register, have not been put side by side with
+their mobile frames.
 
-They work, the logo folds in, the tagline drops, section 1 reveals over 1.5
-seconds in three steps, the events rotate, the gallery flies in from the left,
-but the timing and easing are my reading of the text, not a match against the
-video. This is the clearest example of planning I should have done earlier:
-the demos were in the repo from day one and I only registered them late.
-
-**Polish.** Spacing and type sizes are consistent because they come from shared
-tokens, but I have not gone through the site next to the Figma file screen by
-screen.
+**Mobile screenshots.** The documentation has no screenshots at phone width,
+so the responsive work is described but not shown.
 
 ---
 
 ## Known rough edges
-
-**Gallery alt text.** All 14 gallery rows in the API share one description,
-`"A photo"`. The code uses the field correctly, so the markup is right, but a
-screen reader hears the same thing 14 times. Fixing it means writing real
-descriptions into `db.json`, which I chose to leave as supplied.
 
 **Footer "Recent Posts" is static.** It should read the newest posts from the
 API. It was left static early on because fetching in the root layout would make
@@ -69,7 +57,7 @@ the first green run.
 
 ## If I had more time
 
-1. Compare the four animations against the demo videos and correct the timing.
+1. Take the remaining pages through their mobile frames the way the footer was.
 2. Wire the footer's Recent Posts to the API.
-3. Write real gallery descriptions in `db.json`.
+3. Add screenshots at phone width to the documentation.
 4. Turn on branch protection.
