@@ -43,7 +43,7 @@ const RECENT_TWEETS = [
 
 function ColumnHeading({ children }: { children: string }) {
   return (
-    <h2 className="mb-4 text-xs font-medium tracking-widest text-pink">
+    <h2 className="mb-4 text-center text-xl font-medium tracking-widest text-pink lg:text-left lg:text-xs">
       {children}
     </h2>
   );
@@ -61,23 +61,30 @@ export default function Footer() {
       />
 
       <Container className="grid gap-10 py-section lg:grid-cols-3">
-        <div className="flex flex-col gap-6">
-          <Logo />
+        {/*
+          On a phone the design centres the whole footer and carries the tagline
+          under the wordmark. From lg it goes back to the left-aligned columns.
+        */}
+        <div className="flex flex-col items-center gap-8 text-center lg:items-start lg:gap-6 lg:text-left">
+          <div className="flex flex-col items-center gap-3 lg:items-start">
+            <Logo className="h-auto w-52 lg:w-[183px]" />
+            <p className="text-xs uppercase tracking-[0.35em] text-ink/80 lg:hidden">
+              Have a good time
+            </p>
+          </div>
 
           <div>
             <ColumnHeading>Location</ColumnHeading>
-            <div className="flex items-start gap-3">
-              <address className="text-sm not-italic text-ink">
-                Kompagnistræde 278
-                <br />
-                1265 København K
-              </address>
-            </div>
+            <address className="not-italic text-ink">
+              Kompagnistræde 278
+              <br />
+              1265 København K
+            </address>
           </div>
 
           <div>
             <ColumnHeading>Opening Hours</ColumnHeading>
-            <p className="text-sm text-ink">
+            <p className="uppercase text-ink lg:normal-case">
               WED – THU: 10:30 PM TO 3 AM
               <br />
               SAT – SUN: 11 PM TO 5 AM
@@ -85,7 +92,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="hidden lg:block">
           <ColumnHeading>Recent Posts</ColumnHeading>
           <ul className="flex flex-col gap-5">
             {RECENT_POSTS.map((post) => (
@@ -106,7 +113,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div>
+        <div className="hidden lg:block">
           <ColumnHeading>Recent Tweets</ColumnHeading>
           <ul className="flex flex-col gap-5">
             {RECENT_TWEETS.map((tweet) => (
@@ -127,12 +134,13 @@ export default function Footer() {
       <div className="py-6">
         <Container>
           <div className="grid items-center gap-6 text-center text-xs text-ink/80 sm:grid-cols-3">
-            <p className="sm:text-left">
-              Night Club PSD Template - All Rights Reserved
+            <p className="order-2 sm:order-none sm:text-left">
+              Night Club PSD Template
+              <span className="block sm:inline"> - All Rights Reserved</span>
             </p>
 
-            <div className="flex flex-col items-center gap-2">
-              <h2 className="text-xs font-medium tracking-widest">
+            <div className="order-1 flex flex-col items-center gap-2 sm:order-none">
+              <h2 className="text-sm font-medium normal-case tracking-wide text-ink lg:text-xs lg:tracking-widest">
                 Stay Connected With Us
               </h2>
               <ul className="flex gap-3">
@@ -143,7 +151,7 @@ export default function Footer() {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={label}
-                      className="flex size-9 items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink"
+                      className="flex size-12 items-center justify-center border border-line text-ink transition-colors hover:border-pink hover:text-pink lg:size-9"
                     >
                       <Icon />
                     </a>
@@ -152,7 +160,9 @@ export default function Footer() {
               </ul>
             </div>
 
-            <p className="sm:text-right">Copyright © 2018 NightClub</p>
+            <p className="order-3 sm:order-none sm:text-right">
+              Copyright © 2018 NightClub
+            </p>
           </div>
         </Container>
       </div>
