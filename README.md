@@ -1,63 +1,64 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/BPx_cj6w)
-# Project Documentation: NightClub Website
 
-**Project Name:** NightClub Web Application  
-**Developer Name:** Sebastian Køster  
-**Class/Team:** Web-Udvikler [WU14][cite: 1]  
-**School:** Roskilde Tekniske Skole  
-**GitHub Repository:** [https://github.com/rts-cmk/terminspr-ve-a-wu14-kosterseb]
-**Agile Project Board:** [[Link to GitHub Projects](https://github.com/orgs/rts-cmk/projects/8/views/1)]
+# Night Club
 
----
+Svendeprøve for Web-Udvikler WU14, Roskilde Tekniske Skole.
+Built by Sebastian Køster.
 
-## Access & Evaluation Credentials
+A website for a nightclub in Copenhagen, built from a supplied Figma design and
+a local REST API. Next.js 16 with the App Router, TypeScript, Tailwind 4 and
+Zod.
 
-* **Live Deployment URL:** [Insert Live URL / http://localhost:3000]
-* **API Base URL:** `http://localhost:4000` (Cloned from `https://github.com/rts-cmk/night-club-api`)
-* **Test User Account:**
-  * **Email:** `user@nightclub.dk`
-  * **Password:** `nightclub123!`
+<img src="dokumentation/images/nightclub_header.png" alt="Front page" width="480">
 
----
+## What is in here
 
-## Technology Stack
+| Folder | |
+| --- | --- |
+| `nightclub/` | the site |
+| `api/` | the local API, supplied by the school |
+| `dokumentation/` | appendices to the report |
+| `demoer/` | demo videos of the animations, supplied |
+| `projektdokumentation.md` | the report |
 
-* **Frontend:** Next.js 16 | Tailwind
-* **Build Tool:** [Vite / Webpack / None]
-* **API Integration:** REST API running locally via Node.js/Express (`https://github.com/rts-cmk/night-club-api`)
+## Running it
 
----
+```bash
+npm install
+npm install --prefix nightclub
+npm install --prefix api
+npm run dev
+```
 
-## Architecture & Technical Choices
+Site on http://localhost:3000, API on http://localhost:4000. Both start
+together.
 
-* **Responsive Design:** Mobile-first layout built to specification based on the Figma design file.
-* **Sticky Navigation:** Main navbar snaps to the top of the viewport upon scrolling past the hero section.
-* **API Integration:** Centralized fetch service layer handling requests, dynamic authentication, and input error messages.
+Test user: `user@nightclub.dk` / `nightclub123!`
 
----
+## What it does
 
-## Scope & Completed Requirements
+The front page has the hero, the three offers, events, gallery, video,
+testimonials, the newest blog posts and newsletter signup. Events, gallery,
+testimonials and blog posts all come from the API.
 
-### 1. Mandatory Core Features
-* **Header & Sticky Navigation:** Dynamic navigation with active link highlighting and sticky positioning on scroll.
-* **Footer:** Displays operating hours, contact info, social links, and copyright info.
-* **Homepage / Landing Page:**
-  * **Hero:** Fullscreen view with random background selection and logo/tagline CSS entry animations.
-  * **Section 1 (Welcome):** Interactive hover/touch animation (1.5-second border/text reveal).
-  * **Section 2 (Events of the Month):** Auto-rotating event carousel connected to the API.
-  * **Section 3 (Gallery):** Scroll-triggered entrance animations with full Lightbox modal view.
-  * **Section 6 (Testimonials):** Dynamic guest testimonials fetched via API.
-  * **Section 8 (Mailing List):** Email-validated newsletter form integrated with the API.
-* **Contact Us:** Validated inquiry form sending data to the API.
-* **Authentication:** Login and Register forms with validation and session handling.
+<img src="dokumentation/images/gallery.png" alt="Gallery" width="480">
 
-### 2. [Video Player]
-* **[Selected Option]:** Integrated media player controls, list handling, duration display, and media playback.
+The two optional tasks are the **video player** and the **blog**. The blog has a
+list with pagination, single posts, comments and replies for members, and a My
+Comments page where you can delete your own.
 
-### 3. [Blog Module]
-* **[Selected Option]:** API-driven listing, detailed view, interactive user feedback 
+<img src="dokumentation/images/blog.png" alt="Blog" width="480">
 
-### 4. [Table Booking Module]
-* **[Selected Option]:** API-driven listing, detailed view, interactive user feedback (comments/bookings), and management views ("My Comments" / "My Bookings")[cite: 1].
+## Checks
 
----
+Four run on every pull request: lint, formatting, build, and a contract check
+that starts the API and verifies the fields the site reads.
+
+<img src="dokumentation/images/github_CI.png" alt="CI" width="480">
+
+## Documentation
+
+- [`projektdokumentation.md`](projektdokumentation.md): the report
+- [`dokumentation/technical-choices.md`](dokumentation/technical-choices.md): why things are built the way they are
+- [`dokumentation/api-notes.md`](dokumentation/api-notes.md): the API's quirks
+- [`dokumentation/not-built.md`](dokumentation/not-built.md): what is missing and why
