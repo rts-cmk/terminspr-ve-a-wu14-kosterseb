@@ -19,8 +19,8 @@ that gives 404 reads as broken, so the route shows a short notice pointing at
 the contact form.
 
 **No live version.** The assignment says the API runs locally. A hosted frontend
-could not reach `localhost:4000`, so every section that reads the API would fail
-on a public url. Running locally is the intended setup, not a shortcut.
+could not reach `localhost:4000`, if i had more time i would do a proper setup
+via. Renderer and Github Pages.
 
 ---
 
@@ -30,6 +30,10 @@ on a public url. Running locally is the intended setup, not a shortcut.
 have been checked against the demos and the mobile design. The rest of the
 pages, blog, contact, log in, register, have not been put side by side with
 their mobile frames.
+
+**Recent Post in Footer** I started making the footer component and forgot to 
+return to it after i made the Blog module and functionality. Could be a short
+fix in a new PR.
 
 ---
 
