@@ -31,9 +31,6 @@ have been checked against the demos and the mobile design. The rest of the
 pages, blog, contact, log in, register, have not been put side by side with
 their mobile frames.
 
-**Mobile screenshots.** The documentation has no screenshots at phone width,
-so the responsive work is described but not shown.
-
 ---
 
 ## Known rough edges
@@ -76,6 +73,11 @@ whether the ones that exist read well out loud.
 blog post takes its title from the post. There is no Open Graph or Twitter card
 data, no per-page descriptions and no social preview image, so a shared link
 will look plain.
+
+**Screaming Frog SEO.** A scan with the tool was previously scheduled for optimization
+of SEO, but was in the end not gotten to, it would be ideal before this site goes 
+live that you would make a full run and fix whatever Screaming Frog (a modern and 
+typical tool for webdevelopers) would have flagged.
 
 ---
 
